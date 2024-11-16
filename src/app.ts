@@ -24,6 +24,16 @@ app.set('layout', 'layout');
 // 設置靜態文件目錄
 app.use(express.static('public'));
 
+// 提供 manifest.json
+app.get('/manifest.json', (req, res) => {
+    res.sendFile(path.join(__dirname, 'manifest.json'));
+});
+
+// 提供 service-worker.js
+app.get('/service-worker.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/js/service-worker.js'));
+});
+
 // load routes
 router.forEach(route => {
     app.use(route.getPrefix(), route.getRouter());

@@ -9,10 +9,24 @@
         </title>
         <link rel="stylesheet" href="/styles/styles.css">
         <link rel="stylesheet" href="/styles/main.css">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+        <meta name="theme-color" content="#3490dc">
     </head>
 
     <body>
         <%- body %>
     </body>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch((error) => {
+                    console.error('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 
 </html>
