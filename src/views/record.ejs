@@ -3,19 +3,13 @@
         <div class="w-full">
             <div class="mx-auto max-w-[770px] text-center wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s;">
                 <div class="relative w-full h-screen">
-                    <video id="video" class="w-full h-full object-cover" autoplay></video>
-                    <div class="absolute bottom-8 left-0 right-0 flex items-center justify-center">
-                        <button id="recordBtn" type="button" style="background-color: #3490dc; border-color: #2779bd; color: white; font-weight: 500; border-radius: 9999px; padding: 0.625rem; display: inline-flex; align-items: center; justify-content: center;">
-                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <video id="video" class="hidden" autoplay></video>
+                    <div class="w-full h-full object-cover flex items-center justify-center">
+                        <button id="recordBtn" type="button" style="background-color: #3490dc; border-color: #2779bd; color: white; font-weight: 500; border-radius: 9999px; padding: 3rem; display: inline-flex; align-items: center; justify-center;">
+                            <svg class="w-24 h-24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                 <circle cx="12" cy="12" r="8" />
                             </svg>
                             <span class="sr-only">Start Recording</span>
-                        </button>
-                        <button id="downloadBtn" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" disabled>
-                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                            </svg>
-                            <span class="sr-only">Download Recording</span>
                         </button>
                     </div>
                 </div>
@@ -23,4 +17,8 @@
         </div>
     </div>
 </section>
+<!-- 新增遮罩 -->
+<div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100%; background-color: #1d1f20; color: white; font-size: 2rem; align-items: center; justify-content: center; z-index: 20;">
+    <div id="clock" class="w-full h-full flex items-center justify-center" style="font-family: Arial; font-size: 120px; text-align: center; transform: rotate(90deg);"></div>
+</div>
 <script src="/js/record.js"></script>
