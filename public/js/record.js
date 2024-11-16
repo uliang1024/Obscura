@@ -4,7 +4,7 @@ const videoElement = document.getElementById('video');
 const recordButton = document.getElementById('recordBtn');
 const overlay = document.getElementById('overlay'); // 新增遮罩元素
 const clockElement = document.getElementById('clock'); // 時鐘元素
-const stopButton = document.getElementById('stopBtn');
+const sectionElement = document.getElementById('home'); // 取得 section 元素
 let isRecording = false;
 let clockInterval;
 
@@ -37,15 +37,11 @@ navigator.mediaDevices
 recordButton.addEventListener('click', () => {
   if (mediaRecorder) {
     if (isRecording) {
-      mediaRecorder.stop();
-      overlay.style.display = 'none'; // 隱藏遮罩
-      clearInterval(clockInterval); // 停止時鐘
-      if (document.fullscreenElement) {
-        document.exitFullscreen(); // 退出全螢幕
-      }
+      stopRecording();
     } else {
       recordedChunks = [];
       mediaRecorder.start();
+      sectionElement.style.display = 'none'; // 隱藏 section
       overlay.style.display = 'flex'; // 顯示遮罩
       startTime(); // 開始時鐘
 
@@ -67,10 +63,11 @@ recordButton.addEventListener('click', () => {
   }
 });
 
-// 點擊遮罩停止錄製
-stopButton.addEventListener('click', () => {
+// 點擊或觸控遮罩停止錄製
+function stopRecording() {
   if (isRecording) {
     mediaRecorder.stop();
+    sectionElement.style.display = 'flex'; // 顯示 section
     overlay.style.display = 'none'; // 隱藏遮罩
     clearInterval(clockInterval); // 停止時鐘
     isRecording = false;
@@ -79,7 +76,10 @@ stopButton.addEventListener('click', () => {
       document.exitFullscreen(); // 退出全螢幕
     }
   }
-});
+}
+
+overlay.addEventListener('click', stopRecording);
+overlay.addEventListener('touchstart', stopRecording); // 新增觸控事件
 
 // 更新按鈕文字和圖標
 function updateButtonText(isRecording) {
