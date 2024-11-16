@@ -80,23 +80,6 @@ overlay.addEventListener('click', () => {
   }
 });
 
-// 點擊或觸控遮罩停止錄製
-function stopRecording() {
-  if (isRecording) {
-    mediaRecorder.stop();
-    overlay.style.display = 'none'; // 隱藏遮罩
-    clearInterval(clockInterval); // 停止時鐘
-    isRecording = false;
-    updateButtonText(isRecording);
-    if (document.fullscreenElement) {
-      document.exitFullscreen(); // 退出全螢幕
-    }
-  }
-}
-
-overlay.addEventListener('click', stopRecording);
-overlay.addEventListener('touchstart', stopRecording); // 新增觸控事件
-
 // 更新按鈕文字和圖標
 function updateButtonText(isRecording) {
   if (isRecording) {
