@@ -53,10 +53,6 @@ recordButton.addEventListener('click', () => {
         // 桌面裝置，不旋轉
         clockElement.style.transform = 'rotate(0deg)';
       }
-
-      document.documentElement.requestFullscreen().catch(err => {
-        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-      }); // 進入全螢幕
     }
     isRecording = !isRecording;
     updateButtonText(isRecording);

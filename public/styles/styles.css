@@ -610,10 +610,6 @@ video {
   visibility: visible;
 }
 
-.fixed{
-  position: fixed;
-}
-
 .relative{
   position: relative;
 }
@@ -711,10 +707,6 @@ video {
 
 .rounded-md{
   border-radius: 0.375rem;
-}
-
-.border{
-  border-width: 1px;
 }
 
 .bg-gray-50{
