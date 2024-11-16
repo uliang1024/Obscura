@@ -3,6 +3,7 @@ let recordedChunks = [];
 const videoElement = document.getElementById('video');
 const recordButton = document.getElementById('recordBtn');
 const overlay = document.getElementById('overlay'); // 新增遮罩元素
+const clockElement = document.getElementById('clock'); // 時鐘元素
 let isRecording = false;
 let clockInterval;
 
@@ -46,6 +47,16 @@ recordButton.addEventListener('click', () => {
       mediaRecorder.start();
       overlay.style.display = 'flex'; // 顯示遮罩
       startTime(); // 開始時鐘
+
+      // 判斷裝置類型
+      if (window.innerWidth < window.innerHeight) {
+        // 手機裝置，旋轉時鐘
+        clockElement.style.transform = 'rotate(90deg)';
+      } else {
+        // 桌面裝置，不旋轉
+        clockElement.style.transform = 'rotate(0deg)';
+      }
+
       document.documentElement.requestFullscreen().catch(err => {
         console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
       }); // 進入全螢幕
@@ -68,6 +79,23 @@ overlay.addEventListener('click', () => {
     }
   }
 });
+
+// 點擊或觸控遮罩停止錄製
+function stopRecording() {
+  if (isRecording) {
+    mediaRecorder.stop();
+    overlay.style.display = 'none'; // 隱藏遮罩
+    clearInterval(clockInterval); // 停止時鐘
+    isRecording = false;
+    updateButtonText(isRecording);
+    if (document.fullscreenElement) {
+      document.exitFullscreen(); // 退出全螢幕
+    }
+  }
+}
+
+overlay.addEventListener('click', stopRecording);
+overlay.addEventListener('touchstart', stopRecording); // 新增觸控事件
 
 // 更新按鈕文字和圖標
 function updateButtonText(isRecording) {
