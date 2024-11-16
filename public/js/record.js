@@ -4,6 +4,7 @@ const videoElement = document.getElementById('video');
 const recordButton = document.getElementById('recordBtn');
 const overlay = document.getElementById('overlay'); // 新增遮罩元素
 const clockElement = document.getElementById('clock'); // 時鐘元素
+const stopButton = document.getElementById('stopBtn');
 let isRecording = false;
 let clockInterval;
 
@@ -67,7 +68,7 @@ recordButton.addEventListener('click', () => {
 });
 
 // 點擊遮罩停止錄製
-overlay.addEventListener('click', () => {
+stopButton.addEventListener('click', () => {
   if (isRecording) {
     mediaRecorder.stop();
     overlay.style.display = 'none'; // 隱藏遮罩
@@ -79,28 +80,6 @@ overlay.addEventListener('click', () => {
     }
   }
 });
-
-// 點擊或觸控遮罩停止錄製
-function stopRecording(event) {
-  event.stopPropagation(); // 防止事件冒泡
-  if (isRecording) {
-    mediaRecorder.stop();
-    overlay.style.display = 'none'; // 隱藏遮罩
-    clearInterval(clockInterval); // 停止時鐘
-    isRecording = false;
-    updateButtonText(isRecording);
-    if (document.fullscreenElement) {
-      document.exitFullscreen(); // 退出全螢幕
-    }
-  }
-}
-
-overlay.addEventListener('click', stopRecording);
-overlay.addEventListener('touchstart', stopRecording); // 新增觸控事件
-
-// 在 clock 元件上也添加事件
-clockElement.addEventListener('click', stopRecording);
-clockElement.addEventListener('touchstart', stopRecording); // 新增觸控事件
 
 // 更新按鈕文字和圖標
 function updateButtonText(isRecording) {
@@ -132,7 +111,7 @@ function startTime() {
   clockInterval = setInterval(() => {
     const now = new Date();
     const taiwanTime = now.toLocaleTimeString('zh-TW', { timeZone: 'Asia/Taipei', hour12: false });
-    clockElement.innerHTML = `<div>${taiwanTime}</div>`;
+    document.getElementById('clockText').innerHTML = taiwanTime;
   }, 500);
 }
 
