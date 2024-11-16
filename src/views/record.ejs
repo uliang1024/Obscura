@@ -3,14 +3,18 @@
         <div class="w-full">
             <div class="mx-auto max-w-[770px] text-center wow fadeInUp" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s;">
                 <div class="relative w-full h-screen">
-                    <video id="video" class="hidden" autoplay></video>
-                    <div class="w-full h-full object-cover flex items-center justify-center">
+                    <video id="video" class="hidden" autoplay style="transform: scaleX(-1);"></video>
+                    <div class="w-full h-full object-cover flex flex-col gap-8 items-center justify-center">
                         <button id="recordBtn" type="button" style="background-color: #3490dc; border-color: #2779bd; color: white; font-weight: 500; border-radius: 9999px; padding: 3rem; display: inline-flex; align-items: center; justify-center;">
                             <svg class="w-24 h-24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                 <circle cx="12" cy="12" r="8" />
                             </svg>
                             <span class="sr-only">Start Recording</span>
                         </button>
+                        <label class="inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer" checked>
+                            <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
+                        </label>
                     </div>
                 </div>
             </div>
