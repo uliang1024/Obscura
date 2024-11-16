@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm-run-all --parallel start-server watch:css tailwind",
     "watch:css": "sass --watch src/scss/main.scss:public/styles/main.css",
-    "tailwind": "postcss src/scss/main.scss -o public/styles/styles.css",
+    "tailwind": "tailwindcss -i src/scss/main.scss -o public/styles/styles.css --watch",
     "start-server": "nodemon src/app.ts",
     "build": "tsc --project ./ && npm run build:css && npm run copy-views",
     "build:css": "sass src/scss/main.scss dist/public/styles/main.css && postcss src/scss/main.scss -o dist/public/styles/styles.css",
